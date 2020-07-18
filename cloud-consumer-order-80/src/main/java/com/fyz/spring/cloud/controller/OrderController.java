@@ -14,7 +14,9 @@ import javax.annotation.Resource;
 
 @RestController
 public class OrderController {
-    private static final String BASE_URL = "http://localhost:8001/payment";
+//    private static final String BASE_URL = "http://localhost:8001/payment";
+//    通过服务名调用
+    private static final String BASE_URL = "http://CLOUD-PAYMENT-SERVICE/payment";
 
     @Resource
     private RestTemplate restTemplate;

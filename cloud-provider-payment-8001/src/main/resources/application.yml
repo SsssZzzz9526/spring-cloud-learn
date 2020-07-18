@@ -1,5 +1,5 @@
 server:
-  port: 8001
+  port: 8000
 
 spring:
   application:
@@ -11,6 +11,57 @@ spring:
     username: root
     password: root
 
+eureka:
+  client:
+    # 注册到Eureka Server
+    register-with-eureka: true
+    # 从Eureka Server获取注册信息，集群模式必须设置为true才能配合ribbon负载均衡
+    fetch-registry: true
+    # Eureka Server 地址
+    service-url:
+      # 单机节点
+      defaultZone: http://localhost:7000/eureka/
+      # 集群节点
+#      defaultZone: http://eureka1:7001/eureka/,http://eureka2:7002/eureka/,http://eureka3:7003/eureka/
+  instance:
+    # 向Eureka Server发送心跳间隔时间
+    lease-renewal-interval-in-seconds: 1
+    # 指明Eureka Server自上次接受客户端心跳后最大等待时间
+    lease-expiration-duration-in-seconds: 2
+
 mybatis:
   mapper-locations: classpath*:mapper/*.xml
   type-aliases-package: com.fyz.spring.cloud.entity
+
+---
+# 集群-节点1
+spring:
+  profiles: payment1
+server:
+  port: 8001
+eureka:
+  instance:
+    # 实例ID
+    instance-id: payment1
+    # 实例IP
+    prefer-ip-address: true
+---
+# 集群-节点2
+spring:
+  profiles: payment2
+server:
+  port: 8002
+eureka:
+  instance:
+    instance-id: payment2
+    prefer-ip-address: true
+---
+# 集群-节点3
+spring:
+  profiles: payment3
+server:
+  port: 8003
+eureka:
+  instance:
+    instance-id: payment3
+    prefer-ip-address: true
