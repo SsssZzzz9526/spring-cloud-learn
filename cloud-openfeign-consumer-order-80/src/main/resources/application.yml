@@ -1,0 +1,22 @@
+server:
+  port: 80
+
+spring:
+  application:
+    name: cloud-openfeign-consumer-order
+
+eureka:
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://eureka1:7001/eureka/,http://eureka2:7002/eureka/,http://eureka3:7003/eureka/
+
+ribbon:
+  # 服务调用超时时间
+  ReadTimeout: 4000
+  # 建立连接超时时间
+  ConnectTimeout: 5000
+
+logging:
+  level:
+    com.fyz.spring.cloud.service: debug

@@ -9,19 +9,13 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>cloud-eureka-server-7001</artifactId>
+    <artifactId>cloud-consul-consumer-order-80</artifactId>
 
     <dependencies>
-        <!--eureka server-->
+        <!--spring cloud zookeeper-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
-        </dependency>
-        <!--通用组件-->
-        <dependency>
-            <groupId>com.fyz</groupId>
-            <artifactId>cloud-api-common</artifactId>
-            <version>${project.version}</version>
+            <artifactId>spring-cloud-starter-consul-discovery</artifactId>
         </dependency>
         <!--spring boot web-->
         <dependency>
@@ -32,16 +26,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

@@ -20,14 +20,14 @@ eureka:
     # Eureka Server 地址
     service-url:
       # 单机节点
-      defaultZone: http://localhost:7000/eureka/
+#      defaultZone: http://localhost:7000/eureka/
       # 集群节点
-#      defaultZone: http://eureka1:7001/eureka/,http://eureka2:7002/eureka/,http://eureka3:7003/eureka/
+      defaultZone: http://eureka1:7001/eureka/,http://eureka2:7002/eureka/,http://eureka3:7003/eureka/
   instance:
     # 向Eureka Server发送心跳间隔时间
-    lease-renewal-interval-in-seconds: 1
+    lease-renewal-interval-in-seconds: 30
     # 指明Eureka Server自上次接受客户端心跳后最大等待时间
-    lease-expiration-duration-in-seconds: 2
+    lease-expiration-duration-in-seconds: 60
 
 mybatis:
   mapper-locations: classpath*:mapper/*.xml
