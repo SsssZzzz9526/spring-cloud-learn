@@ -1,0 +1,41 @@
+server:
+  port: 9527
+
+spring:
+  application:
+    name: cloud-gateway
+  cloud:
+    gateway:
+      # 根据服务注册中心的服务名创建路由
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: payment_service_query
+#          uri: http://localhost:8000
+          uri: lb://CLOUD-PAYMENT-SERVICE
+          predicates:
+            - Path=/payment/{id} # 根据路径匹配
+#            - After=2020-07-22T22:39:39.489+08:00[Asia/Shanghai] # 在给定时间之后
+#            - Before=2020-07-22T22:42:39.489+08:00[Asia/Shanghai] # 在给定时间之前
+#            - Between=2020-07-22T22:42:39.489+08:00[Asia/Shanghai],2020-07-22T22:44:39.489+08:00[Asia/Shanghai] # 在给定区间内
+#            - Cookie=username,fyz # 指定cookie 参数名 + 正则表达式
+#            - Header=token,123 # 指定请求头 参数名 + 正则表达式
+#            - Host=*.fyz.com # 指定主机名 参数名 + 正则表达式
+#            - Method=GET # 指定方法
+#            - Query=age # 指定查询参数
+#            - RemoteAddr=192.168.1.1/24 # 指定客户端地址
+          filters:
+            - AddResponseHeader=username, fyz # 在响应头添加 username = fyz
+        - id: payment-service-pay
+#          uri: http://localhost:8000
+          uri: lb://CLOUD-PAYMENT-SERVICE
+          predicates:
+            - Path=/payment
+
+eureka:
+  instance:
+    hostname: cloud-gateway
+  client:
+    service-url:
+      defaultZone: http://localhost:7000/eureka/

@@ -20,9 +20,9 @@ eureka:
     # Eureka Server 地址
     service-url:
       # 单机节点
-#      defaultZone: http://localhost:7000/eureka/
+      defaultZone: http://localhost:7000/eureka/
       # 集群节点
-      defaultZone: http://eureka1:7001/eureka/,http://eureka2:7002/eureka/,http://eureka3:7003/eureka/
+#      defaultZone: http://eureka1:7001/eureka/,http://eureka2:7002/eureka/,http://eureka3:7003/eureka/
   instance:
     # 向Eureka Server发送心跳间隔时间
     lease-renewal-interval-in-seconds: 30
