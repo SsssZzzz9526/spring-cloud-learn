@@ -1,5 +1,5 @@
 user:
-  version: dev
+  version: test
   name: fyz
   age: 23
   sex: male
