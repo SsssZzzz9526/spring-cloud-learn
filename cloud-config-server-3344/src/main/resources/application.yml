@@ -7,11 +7,28 @@ spring:
   cloud:
     config:
       server:
+        # git相关配置
         git:
+          # git仓库地址
           uri: https://github.com/SsssZzzz9526/spring-cloud-learn.git
+          # 仓库根目录下相对搜索路径，可配置多个
           search-paths:
             - config
+          # 默认分支
           default-label: master
+          # 用户名
           username: 139199502@qq.com
+          # 密码
           password: fyz199526
-
+  # MQ配置
+  rabbitmq:
+    host: 192.168.159.128
+    port: 5672
+    username: rabbit
+    password: 123456
+# 监控配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

@@ -1,0 +1,41 @@
+server:
+  port: 3355
+
+spring:
+  application:
+    name: cloud-config-client
+  cloud:
+    # 配置中心 客户端配置
+    config:
+      # 配置中心服务端地址
+      uri: http://localhost:3344
+      # git分支
+      label: master
+      # 配置文件名称，未指定使用${spring.application.name}
+      name: user
+      # 环境标签
+      profile: dev
+  # MQ 配置
+  rabbitmq:
+    host: 192.168.159.128
+    port: 5672
+    username: rabbit
+    password: 123456
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        # include: "refresh"
+
+---
+spring:
+  profiles: client1
+server:
+  port: 3356
+---
+spring:
+  profiles: client2
+server:
+  port: 3357
