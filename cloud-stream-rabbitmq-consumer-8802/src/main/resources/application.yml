@@ -1,0 +1,48 @@
+server:
+  port: 8802
+spring:
+  application:
+    name: cloud-stream-consumer
+  cloud:
+    stream:
+      binders:
+        defaultRabbit:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: 192.168.159.128
+                port: 5672
+                username: rabbit
+                password: 123456
+      bindings:
+        # 消费者
+        input:
+          binder: defaultRabbit
+          destination: cloudExchanger
+          content-type: application/json
+
+---
+spring:
+  profiles: consumer1
+  cloud:
+    stream:
+      bindings:
+        # 消费者
+        input:
+          # 指定分组
+          group: consumer-group-1
+server:
+  port: 8803
+---
+spring:
+  profiles: consumer2
+  cloud:
+    stream:
+      bindings:
+        # 消费者
+        input:
+          # 取消分组 模拟消息丢失
+          # group: consumer-group-1
+server:
+  port: 8804

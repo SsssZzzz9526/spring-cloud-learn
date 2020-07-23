@@ -1,0 +1,33 @@
+server:
+  port: 8801
+
+spring:
+  application:
+    name: cloud-stream-provider
+
+  cloud:
+    stream:
+      # 绑定器
+      binders:
+        # 自定义名称
+        defaultRabbit:
+          # 指定消息中间件
+          type: rabbit
+          # rabbitmq相关配置
+          environment:
+            spring:
+              rabbitmq:
+                host: 192.168.159.128
+                port: 5672
+                username: rabbit
+                password: 123456
+      # 绑定关系描述
+      bindings:
+        # 生产者
+        output:
+          # 指定binder
+          binder: defaultRabbit
+          # 指定exchanger
+          destination: cloudExchanger
+          # 指定消息类型
+          content-type: application/json
