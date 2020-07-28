@@ -1,0 +1,21 @@
+server:
+  port: 9101
+
+spring:
+  application:
+    name: consumer-order
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.159.128:8848
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+services:
+  payment: http://provider-payment
+
+

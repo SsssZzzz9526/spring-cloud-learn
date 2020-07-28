@@ -1,0 +1,13 @@
+server:
+  port: 9201
+spring:
+  application:
+    name: nacos-config-client
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.159.128:8848 #Nacos地址
+        file-extension: yaml #这里我们获取的yaml格式的配置
+        group: DEV_GROUP
+#        group: TEST_GROUP
+#        namespace: acff3d9d-39d9-4f9a-ae4d-d1a14a8152a3
