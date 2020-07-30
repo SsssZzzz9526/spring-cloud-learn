@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: cloud-alibaba-provider-payment
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.159.128:8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+---
+spring:
+  profiles: payment1
+server:
+  port: 9301
+---
+spring:
+  profiles: payment2
+server:
+  port: 9302
